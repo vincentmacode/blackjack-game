@@ -1,21 +1,26 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        <h1>Blackjack</h1>
-        <p id="message-el">Want to play a round?</p>
-        <p id="cards-el">Cards:</p>
-        <p id="sum-el">Sum:</p>
-        <p id="dealer-el">Dealer Cards:</p>
-        <button onclick="decreaseBet()">- BET</button>
-        <button onclick="increaseBet()">+ BET</button>
-        <button onclick="startGame()">START GAME</button>
-        <button onclick="newCard()">NEW CARD</button>
-        <button onclick="holdCard()">HOLD</button>
-        <button onclick="resetGame()">RESET</button>
-        <p id="player-el"></p>
-        <p id="bet-el"></p>
-        <script src="index.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Blackjack</h1>
+    <p id="message-el">Want to play a round?</p>
+    <p id="cards-el">Cards:</p>
+    <p id="sum-el">Sum:</p>
+    <p id="dealer-el">Dealer Cards:</p>
+    <button onclick="decreaseBet()">- BET</button>
+    <button onclick="increaseBet()">+ BET</button>
+    <button onclick="startGame()">START GAME</button>
+    <button onclick="newCard()">NEW CARD</button>
+    <button onclick="holdCard()">HOLD</button>
+    <button onclick="resetGame()">RESET</button>
+    <p id="player-el"></p>
+    <p id="bet-el"></p>
+</body>
+
 </html>

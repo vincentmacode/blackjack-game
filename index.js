@@ -92,3 +92,27 @@ function decreaseBet() {
         chipEl.textContent = "Current bet: $" + currentBet
     }
 }
+
+// Minimal hold and reset implementations to avoid runtime errors from UI buttons
+function holdCard() {
+    if (!isAlive) return
+    // Simple hold behavior: stop drawing and evaluate dealer-like outcome
+    isAlive = false
+    message = "You held — round over."
+    messageEl.textContent = message
+}
+
+function resetGame() {
+    // Reset game state, keep player's chips intact
+    cards = []
+    sum = 0
+    hasBlackJack = false
+    isAlive = false
+    message = "Want to play a round?"
+    if (messageEl) messageEl.textContent = message
+    if (cardsEl) cardsEl.textContent = "Cards:"
+    if (sumEl) sumEl.textContent = "Sum:"
+    // Reset bet display
+    currentBet = 20
+    if (chipEl) chipEl.textContent = "Current bet: $" + currentBet
+}

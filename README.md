@@ -1,3 +1,3 @@
-#Blackjack game
-##Not finished
+# Blackjack game
+## Not finished
 Still working on the project.

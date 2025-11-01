@@ -15,7 +15,6 @@ let cardsEl = document.getElementById("cards-el")
 let playerEl = document.getElementById("player-el")
 let chipEl = document.getElementById("bet-el")
 
-chipEl.textContent = "Current bet: $" + currentBet
 
 playerEl.textContent = player.name + ": $" + player.chips
 

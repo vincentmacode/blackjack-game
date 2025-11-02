@@ -1,5 +1,5 @@
 let player = {
-    name: "Per",
+    name: "Player",
     chips: 200
 }
 
@@ -93,6 +93,21 @@ function decreaseBet() {
     }
 }
 
+// Change the player's name from the input box and update the UI
+function changePlayerName() {
+    const input = document.getElementById('player-name')
+    if (!input) return
+    const newName = input.value.trim()
+    if (newName.length === 0) {
+        // If empty, don't change name (or optionally reset to default)
+        return
+    }
+    player.name = newName
+    if (playerEl) playerEl.textContent = player.name + ": $" + player.chips
+    // Optionally clear the input
+    // input.value = ''
+}
+
 // Minimal hold and reset implementations to avoid runtime errors from UI buttons
 function holdCard() {
     if (!isAlive) return
@@ -115,4 +130,7 @@ function resetGame() {
     // Reset bet display
     currentBet = 20
     if (chipEl) chipEl.textContent = "Current bet: $" + currentBet
+    // Reset player's chips to default
+    player.chips = 200
+    if (playerEl) playerEl.textContent = player.name + ": $" + player.chips
 }

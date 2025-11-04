@@ -14,10 +14,12 @@ let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("cards-el")
 let playerEl = document.getElementById("player-el")
 let chipEl = document.getElementById("bet-el")
+let dealerEl = document.getElementById("dealer-el")
 
 chipEl.textContent = "Current bet: $" + currentBet
 
 playerEl.textContent = player.name + ": $" + player.chips
+
 
 function getRandomCard() {
     let randomNumber = Math.floor( Math.random()*13 ) + 1
@@ -108,13 +110,42 @@ function changePlayerName() {
     // input.value = ''
 }
 
-// Minimal hold and reset implementations to avoid runtime errors from UI buttons
+// Dealer draws cards until reaching 17 or higher
 function holdCard() {
-    if (!isAlive) return
-    // Simple hold behavior: stop drawing and evaluate dealer-like outcome
+    if (!isAlive || hasBlackJack || sum > 21) return
+    
+    // Initialize dealer's hand
+    let dealerCards = []
+    let dealerSum = 0
+    
+    // Draw cards until dealer reaches 17 or higher
+    while (dealerSum < 17) {
+        let card = getRandomCard()
+        dealerCards.push(card)
+        dealerSum += card
+        dealerEl.textContent = "Dealer Cards: " + dealerCards.join(" ")
+    }
+    
+    // Determine winner
     isAlive = false
-    message = "You held — round over."
+    if (dealerSum > 21) {
+        message = "Dealer busted! You win!"
+        player.chips += currentBet
+    } else if (dealerSum > sum) {
+        message = `Dealer wins with ${dealerSum}!`
+        player.chips -= currentBet
+    } else if (dealerSum < sum) {
+        message = `You win with ${sum}!`
+        player.chips += currentBet
+    } else {
+        message = "Push! It's a tie!"
+        // No chip changes on tie
+    }
+    
+    // Update UI
     messageEl.textContent = message
+    playerEl.textContent = player.name + ": $" + player.chips
+    dealerEl.textContent = "Dealer Cards: " + dealerCards.join(" ") + " (Sum: " + dealerSum + ")"
 }
 
 function resetGame() {
